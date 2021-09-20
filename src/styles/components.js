@@ -18,9 +18,9 @@ export const StyledHeader = styled.header`
   );
   margin-bottom: 0;
   padding: 0 0.5rem 0 0;
-  height: 3.5rem;
+  height: 8.5rem;
   width: 100%;
-  max-width: 960;
+  max-width: 980;
   display: flex;
   position: fixed;
   z-index: 3;
@@ -28,13 +28,13 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
   a {
     height: 100%;
-    font-size: 0.6rem;
+    font-size: 0.9rem;
   }
   & > a > img {
     margin: 0;
-    background-color: ${colors.green};
+
     height: 100%;
-    padding: 0.5rem 0.8rem;
+    padding: 0.2rem 0.2rem;
   }
   & ul {
     list-style: none;
@@ -89,6 +89,7 @@ export const StyledJumbo = styled.div`
   ${above.medium`
     padding: 2rem 4rem;
     flex-direction: row;
+  
     & h2 {
       font-size: 1rem;
     };
@@ -99,6 +100,7 @@ export const StyledJumbo = styled.div`
   ${above.mediumL`
     padding: 2rem 4rem;
     flex-direction: row;
+   
     & h2 {
       font-size: 1rem;
     };
@@ -122,7 +124,6 @@ export const StyledJumbo = styled.div`
     background-color: ${colors.darkBlue};
     z-index: -1;
     position: absolute;
-    transform: rotate(-19deg);
     border-radius: 35%;
     top: -25%;
     width: 120%;
@@ -130,6 +131,7 @@ export const StyledJumbo = styled.div`
     ${above.medium`
       height: 20rem;
       top: -50%;
+      
     `}
     ${above.mediumL`
       height: 30rem;

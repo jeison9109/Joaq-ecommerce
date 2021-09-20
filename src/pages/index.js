@@ -1,16 +1,63 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import { Jumbo, SEO, Products } from "../components"
 
-import { Layout, SEO } from "../components"
+//import styled from "styled-components"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+export const query = graphql`
+  query GET_DATA {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            description
+          }
+        }
+      }
+    }
+
+    allStripePrice {
+      edges {
+        node {
+          id
+          unit_amount
+          product {
+            name
+            metadata {
+              img
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+/*const Button = styled.button`
+  width: 8rem;
+  background-color: #98ca3f;
+  border: none;
+  border-radius: 10px;
+  color: ${props => props.color};
+  &:hover {
+    transform: scale(1.4);
+  }
+`*/
+
+const IndexPage = ({ data }) => {
+  console.log(data)
+
+  return (
+    <>
+      <SEO title="Home" />
+      <Jumbo
+        description={data.allSite.edges[0].node.siteMetadata.description}
+      />
+      {/*  <Button color="gray">Comprar</Button>*/}
+      <Products products={data.allStripePrice.edges} />
+    </>
+  )
+}
 
 export default IndexPage

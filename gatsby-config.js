@@ -1,11 +1,26 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Joaq Tienda Virtual`,
+    description: `Joaq Accesorios disponibles en la web.`,
+    author: `@YeisonSerna`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-stripe`,
+
+    {
+      resolve: `gatsby-source-stripe`,
+      options: {
+        objects: [`Price`],
+        secretKey: process.env.STRIPE_SK,
+        downloadFiles: true,
+      },
+    },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -27,6 +42,14 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: "src/utils/typography.js",
+      },
+    },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
